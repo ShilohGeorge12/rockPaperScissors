@@ -1,11 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import { Score } from '../../components/score';
-import { useMycontext } from '../../context';
 
 export const Home = () => {
-	const {
-		// state: { housePicked, userPicked },
-	} = useMycontext();
 	return (
 		<main className='relative flex flex-col w-full h-screen gap-8'>
 			<Score />

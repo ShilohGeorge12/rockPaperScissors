@@ -1,13 +1,14 @@
+import { useNavigate } from 'react-router-dom';
 import paper from '../../assets/images/icon-paper.svg';
 import rock from '../../assets/images/icon-rock.svg';
 import scissors from '../../assets/images/icon-scissors.svg';
 import { useMycontext } from '../../context';
-// import pentagon from '../../assets/images/bg-pentagon.svg';
 
 export default function Result() {
 	const {
 		state: { housePicked, userPicked },
 	} = useMycontext();
+	const naviTo = useNavigate();
 	console.log({ housePicked, userPicked });
 
 	return (
@@ -97,13 +98,24 @@ export default function Result() {
 				)}
 			</div>
 			<div className='text-xl text-white transition duration-500 ease-in-out hover:scale-105'>
-				{userPicked === 'Paper' && housePicked === 'Scissors' && <p>House Wins!!</p>}
-				{userPicked === 'Scissors' && housePicked === 'Paper' && <p>You Wins!!</p>}
-				{userPicked === 'Rock' && housePicked === 'Paper' && <p>House Wins!!</p>}
-				{userPicked === 'Paper' && housePicked === 'Rock' && <p>You Wins!!</p>}
-				{userPicked === 'Scissors' && housePicked === 'Rock' && <p>House Wins!!</p>}
-				{userPicked === 'Rock' && housePicked === 'Scissors' && <p>You Wins!!</p>}
+				{userPicked === 'Paper' && housePicked === 'Scissors' && <p>House Wins 😞</p>}
+				{userPicked === 'Scissors' && housePicked === 'Paper' && <p>You Wins 🎉</p>}
+				{userPicked === 'Rock' && housePicked === 'Paper' && <p>House Wins 😞</p>}
+				{userPicked === 'Paper' && housePicked === 'Rock' && <p>You Wins 🎉</p>}
+				{userPicked === 'Scissors' && housePicked === 'Rock' && <p>House Wins 😞</p>}
+				{userPicked === 'Rock' && housePicked === 'Scissors' && <p>You Wins 🎉</p>}
+				{userPicked === 'Rock' && housePicked === 'Rock' && <p>Tie Game 🤝</p>}
+				{userPicked === 'Scissors' && housePicked === 'Scissors' && <p>Tie Game 🤝</p>}
+				{userPicked === 'Paper' && housePicked === 'Paper' && <p>Tie Game 🤝</p>}
 			</div>
+
+			<button
+				type='button'
+				name={`Play Again!`}
+				className={`w-1/4 h-12 bg-white rounded-lg transition duration-500 ease-in-out hover:scale-110 text-primary-1 text-xl tracking-widest`}
+				onClick={() => naviTo('/')}>
+				Play Again
+			</button>
 		</section>
 	);
 }

@@ -15,7 +15,7 @@ const MyContextState = createContext({
 const reducer: ReducerType = (state, action) => {
 	switch (action.type) {
 		case 'user_picked':
-			return { ...state, userPicked: action.payload.userPicked, housePicked: action.payload.housePicked };
+			return { ...state, userPicked: action.payload.userPicked, housePicked: action.payload.housePicked, score: action.payload.score };
 		default:
 			return state;
 	}

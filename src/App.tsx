@@ -1,7 +1,3 @@
-// import Result from './components/result';
-// import Round from './components/round';
-// import { Score } from './components/score';
-// import { useMycontext } from './context';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { AllRoutes } from './routes';
 
@@ -11,10 +7,6 @@ function App() {
 			<Router>
 				<AllRoutes />
 			</Router>
-			{/* <Score />
-			<Outlet/> */}
-			{/* {(housePicked === 'play' || userPicked === 'play') && <Round />}
-			{housePicked !== 'play' && userPicked !== 'play' && <Result />} */}
 		</main>
 	);
 }

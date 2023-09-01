@@ -4,27 +4,67 @@ import scissors from '../../assets/images/icon-scissors.svg';
 import triangle from '../../assets/images/bg-triangle.svg';
 import { useMycontext } from '../../context';
 import { useNavigate } from 'react-router-dom';
-// import pentagon from '../../assets/images/bg-pentagon.svg';
+import { choices } from '../../types';
 
 export default function Round() {
-	const { dispatch } = useMycontext();
+	const {
+		dispatch,
+		state: { score: currentScore },
+	} = useMycontext();
 	const naviTo = useNavigate();
 
+	const choices: choices = ['Rock', 'Paper', 'Scissors'];
+
+	const getRandomChoice = () => {
+		const randomIndex = Math.floor(Math.random() * choices.length);
+		return choices[randomIndex];
+	};
+
 	const onRock = () => {
-		dispatch({ type: 'user_picked', payload: { userPicked: 'Rock', housePicked: 'Paper' } });
-		// dispatch({ type: 'user_Paper', payload: { userPicked: 'Paper' } });
+		const housePicks = getRandomChoice();
+		let score: number = 0;
+		const twoPoints = 2;
+		const zeroPoint = 0;
+		if (housePicks === 'Paper') {
+			score = currentScore === 0 ? zeroPoint : currentScore - twoPoints;
+		} else if (housePicks === 'Rock') {
+			score = currentScore + zeroPoint;
+		} else {
+			score = currentScore + twoPoints;
+		}
+		dispatch({ type: 'user_picked', payload: { userPicked: 'Rock', housePicked: housePicks, score: score } });
 		naviTo('/results');
 	};
 
 	const onScissors = () => {
-		dispatch({ type: 'user_picked', payload: { userPicked: 'Scissors', housePicked: 'Rock' } });
-		// dispatch({ type: 'user_rock', payload: { userPicked: 'Rock' } });
+		const housePicks = getRandomChoice();
+		const twoPoints = 2;
+		const zeroPoint = 0;
+		let score: number = 0;
+		if (housePicks === 'Scissors') {
+			score = currentScore + zeroPoint;
+		} else if (housePicks === 'Rock') {
+			score = currentScore === 0 ? zeroPoint : currentScore - twoPoints;
+		} else {
+			score = currentScore + twoPoints;
+		}
+		dispatch({ type: 'user_picked', payload: { userPicked: 'Scissors', housePicked: housePicks, score: score } });
 		naviTo('/results');
 	};
 
 	const onPaper = () => {
-		dispatch({ type: 'user_picked', payload: { userPicked: 'Paper', housePicked: 'Scissors' } });
-		// dispatch({ type: 'house_Scissors', payload: { housePicked: 'Scissors' } });
+		const result = getRandomChoice();
+		let score: number = 0;
+		const twoPoints = 2;
+		const zeroPoint = 0;
+		if (result === 'Paper') {
+			score = currentScore + zeroPoint;
+		} else if (result === 'Scissors') {
+			score = currentScore === 0 ? zeroPoint : currentScore - twoPoints;
+		} else {
+			score = currentScore + twoPoints;
+		}
+		dispatch({ type: 'user_picked', payload: { userPicked: 'Paper', housePicked: result, score: score } });
 		naviTo('/results');
 	};
 
