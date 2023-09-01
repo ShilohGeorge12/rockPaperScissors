@@ -2,8 +2,8 @@ import { ReactNode, createContext, useContext, useReducer } from 'react';
 import { ReducerType, State, contextActions } from '../types';
 
 const initState: State = {
-	housePicked: 'Rock',
-	userPicked: 'Rock',
+	housePicked: 'play',
+	userPicked: 'play',
 	score: 0,
 };
 
@@ -14,16 +14,8 @@ const MyContextState = createContext({
 
 const reducer: ReducerType = (state, action) => {
 	switch (action.type) {
-		case 'house_Paper':
-			return { ...state, housePicked: action.payload.housePicked };
-		case 'house_Scissors':
-			return { ...state, housePicked: action.payload.housePicked };
-		case 'house_rock':
-			return { ...state, housePicked: action.payload.housePicked };
-		case 'user_Paper':
-			return { ...state, userPicked: action.payload.userPicked };
-		case 'user_Scissors':
-			return { ...state, userPicked: action.payload.userPicked };
+		case 'user_picked':
+			return { ...state, userPicked: action.payload.userPicked, housePicked: action.payload.housePicked };
 		default:
 			return state;
 	}
@@ -34,4 +26,4 @@ export const ContextProvider = ({ children }: { children: ReactNode }) => {
 	return <MyContextState.Provider value={{ state, dispatch }}>{children}</MyContextState.Provider>;
 };
 
-export const context = () => useContext(MyContextState);
+export const useMycontext = () => useContext(MyContextState);

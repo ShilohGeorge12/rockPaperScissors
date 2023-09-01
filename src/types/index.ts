@@ -4,20 +4,15 @@ type Rock = 'Rock';
 type Paper = 'Paper';
 type Scissors = 'Scissors';
 type rockPaperScissors = Rock | Paper | Scissors;
-
+type userPicked = rockPaperScissors | 'play';
+type housePicked = rockPaperScissors | 'play';
 // context State Types
-export type contextActions =
-	| { type: 'user_rock'; payload: { userPicked: Rock } }
-	| { type: 'user_Paper'; payload: { userPicked: Paper } }
-	| { type: 'user_Scissors'; payload: { userPicked: Scissors } }
-	| { type: 'house_rock'; payload: { housePicked: Rock } }
-	| { type: 'house_Paper'; payload: { housePicked: Paper } }
-	| { type: 'house_Scissors'; payload: { housePicked: Scissors } };
+export type contextActions = { type: 'user_picked'; payload: { userPicked: rockPaperScissors; housePicked: rockPaperScissors } };
 
 export interface State {
 	score: number;
-	userPicked: rockPaperScissors;
-	housePicked: rockPaperScissors;
+	userPicked: userPicked;
+	housePicked: housePicked;
 }
 
 export interface context {
