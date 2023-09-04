@@ -5,6 +5,7 @@ const initState: State = {
 	housePicked: 'play',
 	userPicked: 'play',
 	score: 0,
+	viewRules: false,
 };
 
 const MyContextState = createContext({
@@ -16,6 +17,10 @@ const reducer: ReducerType = (state, action) => {
 	switch (action.type) {
 		case 'user_picked':
 			return { ...state, userPicked: action.payload.userPicked, housePicked: action.payload.housePicked, score: action.payload.score };
+		case 'view_rules_open':
+			return { ...state, viewRules: action.payload.open };
+		case 'view_rules_close':
+			return { ...state, viewRules: action.payload.close };
 		default:
 			return state;
 	}
