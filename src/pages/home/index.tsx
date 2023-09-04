@@ -3,7 +3,7 @@ import { Score } from '../../components/score';
 
 export const Home = () => {
 	return (
-		<main className='relative flex flex-col w-full h-screen gap-8'>
+		<main className='relative flex flex-col w-full h-screen gap-24 lg:gap-10'>
 			<Score />
 			<Outlet />
 			<button

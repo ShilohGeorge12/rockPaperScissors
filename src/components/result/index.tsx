@@ -9,15 +9,14 @@ export default function Result() {
 		state: { housePicked, userPicked },
 	} = useMycontext();
 	const naviTo = useNavigate();
-	console.log({ housePicked, userPicked });
 
 	return (
 		<section className={`w-full flex flex-col gap-5 items-center justify-center py-4`}>
-			<div className='w-[50%] flex items-center justify-evenly text-xl tracking-widest text-white'>
+			<div className='w-full lg:w-[50%] flex items-center justify-evenly text-xl tracking-widest text-white'>
 				<p className='text'>You Picked</p>
 				<p className=''>House Picked</p>
 			</div>
-			<div className='w-[50%] flex items-center justify-evenly'>
+			<div className='w-full lg:w-[50%] flex items-center justify-evenly'>
 				{userPicked === 'Paper' && (
 					<div className='flex flex-col items-center justify-center gap-4'>
 						<div className=' border-blue-600  border-[20px] rounded-[50%] p-6 bg-white/80'>
@@ -112,7 +111,7 @@ export default function Result() {
 			<button
 				type='button'
 				name={`Play Again!`}
-				className={`w-1/4 h-12 bg-white rounded-lg transition duration-500 ease-in-out hover:scale-110 text-primary-1 text-xl tracking-widest`}
+				className={`w-[50%] lg:w-1/4 h-12 bg-white rounded-lg transition duration-500 ease-in-out hover:scale-110 text-primary-1 text-xl tracking-widest`}
 				onClick={() => naviTo('/')}>
 				Play Again
 			</button>
