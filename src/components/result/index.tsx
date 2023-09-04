@@ -24,7 +24,7 @@ export default function Result() {
 								src={paper}
 								title='paper'
 								alt='paper'
-								className={'w-12'}
+								className={'w-16'}
 							/>
 						</div>
 						<p className='text-base text-white'>{userPicked}</p>
@@ -37,7 +37,7 @@ export default function Result() {
 								src={rock}
 								title='rock'
 								alt='rock'
-								className={'w-12'}
+								className={'w-16'}
 							/>
 						</div>
 						<p className='text-base text-white'>{userPicked}</p>
@@ -96,7 +96,7 @@ export default function Result() {
 					</div>
 				)}
 			</div>
-			<div className='text-xl text-white transition duration-500 ease-in-out hover:scale-105'>
+			<div className='text-3xl text-white transition duration-500 ease-in-out hover:scale-105'>
 				{userPicked === 'Paper' && housePicked === 'Scissors' && <p>House Wins 😞</p>}
 				{userPicked === 'Scissors' && housePicked === 'Paper' && <p>You Wins 🎉</p>}
 				{userPicked === 'Rock' && housePicked === 'Paper' && <p>House Wins 😞</p>}
