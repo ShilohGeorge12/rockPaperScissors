@@ -41,4 +41,4 @@ If you need a reminder of the game rules while playing, simply click on the "Rul
 
 ## Credits
 
-This Rock, Paper, Scissors game was created by [Shiloh George] and is powered by HTML, CSS, and JavaScript.
+This Rock, Paper, Scissors game was created by Shiloh George and is powered by HTML, Tailwindcss and React.
