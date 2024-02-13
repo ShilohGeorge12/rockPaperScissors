@@ -11,12 +11,8 @@ export default function Result() {
 	} = useMycontext();
 	const naviTo = useNavigate();
 
-	const userWins = <p>House Wins 😞</p>;
-	const houseWins = <p>You Win 🎉</p>;
-	const tieGame = <p>Tie Game 🤝</p>;
-
 	return (
-		<section className={`w-full flex flex-col gap-5 overflow-hidden items-center justify-center py-4`}>
+		<section className={`w-full flex flex-col gap-5 items-center justify-center py-4`}>
 			<div className='w-full lg:w-[50%] flex items-center justify-evenly text-xl tracking-widest text-white'>
 				<p className='text'>You Picked</p>
 				<p className=''>House Picked</p>
@@ -65,16 +61,17 @@ export default function Result() {
 					/>
 				)}
 			</div>
+
 			<div className='text-3xl text-white transition duration-500 ease-in-out hover:scale-105'>
-				{userPicked === 'Paper' && housePicked === 'Scissors' && houseWins}
-				{userPicked === 'Scissors' && housePicked === 'Paper' && userWins}
-				{userPicked === 'Rock' && housePicked === 'Paper' && houseWins}
-				{userPicked === 'Paper' && housePicked === 'Rock' && userWins}
-				{userPicked === 'Scissors' && housePicked === 'Rock' && houseWins}
-				{userPicked === 'Rock' && housePicked === 'Scissors' && userWins}
-				{userPicked === 'Rock' && housePicked === 'Rock' && tieGame}
-				{userPicked === 'Scissors' && housePicked === 'Scissors' && tieGame}
-				{userPicked === 'Paper' && housePicked === 'Paper' && tieGame}
+				{userPicked === 'Paper' && housePicked === 'Scissors' && <p>House Wins 😞</p>}
+				{userPicked === 'Scissors' && housePicked === 'Paper' && <p>You Win 🎉</p>}
+				{userPicked === 'Rock' && housePicked === 'Paper' && <p>House Wins 😞</p>}
+				{userPicked === 'Paper' && housePicked === 'Rock' && <p>You Win 🎉</p>}
+				{userPicked === 'Scissors' && housePicked === 'Rock' && <p>House Wins 😞</p>}
+				{userPicked === 'Rock' && housePicked === 'Scissors' && <p>You Win 🎉</p>}
+				{userPicked === 'Rock' && housePicked === 'Rock' && <p>Tie Game 🤝</p>}
+				{userPicked === 'Scissors' && housePicked === 'Scissors' && <p>Tie Game 🤝</p>}
+				{userPicked === 'Paper' && housePicked === 'Paper' && <p>Tie Game 🤝</p>}
 			</div>
 
 			<button
