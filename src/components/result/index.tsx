@@ -4,6 +4,7 @@ import rock from '../../assets/images/icon-rock.svg';
 import scissors from '../../assets/images/icon-scissors.svg';
 import { useMycontext } from '../../context';
 import { ImageCaption } from '../imageCaption';
+import { motion } from 'framer-motion';
 
 export default function Result() {
 	const {
@@ -12,7 +13,12 @@ export default function Result() {
 	const naviTo = useNavigate();
 
 	return (
-		<section className={`w-full flex flex-col gap-5 items-center justify-center py-4`}>
+		<motion.section
+			className={`w-full flex flex-col gap-5 items-center justify-center py-4`}
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			exit={{ opacity: 0 }}
+			transition={{ duration: 1.7 }}>
 			<div className='w-full lg:w-[50%] flex items-center justify-evenly text-xl tracking-widest text-white'>
 				<p className='text'>You Picked</p>
 				<p className=''>House Picked</p>
@@ -81,6 +87,6 @@ export default function Result() {
 				onClick={() => naviTo('/')}>
 				Play Again
 			</button>
-		</section>
+		</motion.section>
 	);
 }

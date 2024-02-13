@@ -5,6 +5,7 @@ import triangle from '../../assets/images/bg-triangle.svg';
 import { useMycontext } from '../../context';
 import { useNavigate } from 'react-router-dom';
 import { choices } from '../../types';
+import { motion } from 'framer-motion';
 
 export default function Round() {
 	const {
@@ -69,7 +70,12 @@ export default function Round() {
 	};
 
 	return (
-		<section className={`w-full py-8 flex gap-2 items-center justify-center`}>
+		<motion.section
+			className={`w-full py-8 flex gap-2 items-center justify-center`}
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			exit={{ opacity: 0 }}
+			transition={{ duration: 1.7 }}>
 			<div className='relative w-72'>
 				<img
 					src={triangle}
@@ -113,6 +119,6 @@ export default function Round() {
 					/>
 				</button>
 			</div>
-		</section>
+		</motion.section>
 	);
 }

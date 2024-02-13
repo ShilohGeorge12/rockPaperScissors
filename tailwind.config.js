@@ -5,18 +5,19 @@ export default {
 	theme: {
 		extend: {
 			animation: {
-				text: 'text 5s ease infinite',
-				slide: 'slide 20s ease infinite',
-				rotate: 'spin 2s ease-in-out infinite',
+				'text': 'text 10s ease infinite',
+				'bg-color-animation': 'bg-color-animation 10s linear infinite',
+				'slide': 'slide 20s ease infinite',
+				'rotate': 'spin 2s ease-in-out infinite',
 			},
 			blur: {
 				xs: '1.5px',
 			},
 			colors: {
-				primary: { 1: 'hsl(214, 47%, 23%)', 2: 'hsl(237, 49%, 15%)' },
+				primary: { 1: 'hsl(214, 47%, 23%)', 2: 'hsl(237, 49%, 15%)', 3: 'hsl(277, 92.6%, 45.9%)' },
 			},
 			keyframes: {
-				text: {
+				'text': {
 					'0%, 100%': {
 						'background-size': '200% 200%',
 						'background-position': 'left center',
@@ -26,7 +27,13 @@ export default {
 						'background-position': 'right center',
 					},
 				},
-				silde: {
+				'bg-color-animation': {
+					'0%': { backgroundColor: 'hsl(214, 47%, 23%)' }, // primary color 1
+					'33%': { backgroundColor: 'hsl(237, 49%, 15%)' }, // primary color 2
+					'66%': { backgroundColor: 'hsl(214, 47%, 13%)' }, // new primary color
+					'100%': { backgroundColor: 'hsl(214, 47%, 23%)' }, // back to primary color 1
+				},
+				'silde': {
 					'0%': {
 						transform: 'translateX(0)',
 					},
