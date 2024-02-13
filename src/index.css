@@ -20,22 +20,22 @@
 /* Handle */
 ::-webkit-scrollbar-thumb {
 	border-radius: 5px;
-	background: rgb(233, 6, 184);
+	background: rgb(6, 131, 233);
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-	background: rgb(233, 6, 184);
+	background: rgb(6, 131, 233);
 }
 
 ::selection {
-	@apply text-white bg-pink-600 rounded-xl;
+	@apply text-white bg-blue-600 rounded-xl;
 }
 
 ::-moz-selection {
-	@apply text-white bg-pink-600 rounded-xl;
+	@apply text-white bg-blue-600 rounded-xl;
 }
 
 input[type='file']::-webkit-file-upload-button {
-	@apply p-2 text-white bg-pink-600 border-0 rounded-sm outline-0;
+	@apply p-2 text-white bg-blue-600 border-0 rounded-sm outline-0;
 }
