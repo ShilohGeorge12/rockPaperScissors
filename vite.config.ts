@@ -12,6 +12,6 @@ export default defineConfig({
 		},
 	},
 	server: {
-		port: 8077,
+		port: 8078,
 	},
 });
