@@ -22,8 +22,17 @@ export default function Round() {
 		const playerHistory = gameHistory?.map((h) => h.playerMove) || [];
 
 		switch (difficulty) {
-			case 'easy':
-				return moves[Math.floor(Math.random() * moves.length)];
+			case 'easy': {
+				// CPU cycles through moves in order: Rock → Paper → Scissors → Rock...
+				const lastCPUMove = gameHistory?.[gameHistory.length - 1]?.cpuMove;
+
+				if (lastCPUMove === 'Rock') return 'Paper';
+				if (lastCPUMove === 'Paper') return 'Scissors';
+				if (lastCPUMove === 'Scissors') return 'Rock';
+
+				// First move, start with Rock
+				return 'Rock';
+			}
 
 			case 'medium': {
 				if (playerHistory.length > 0 && Math.random() < 0.6) {
