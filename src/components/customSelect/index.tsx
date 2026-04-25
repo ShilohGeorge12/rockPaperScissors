@@ -1,5 +1,4 @@
 import { AnimatePresence, motion } from 'framer-motion';
-// src/components/customSelect/index.tsx
 import { useEffect, useRef, useState } from 'react';
 
 import { useMycontext } from '../../context';
@@ -85,11 +84,11 @@ export const CustomSelect = ({ value, onChange, options, label }: CustomSelectPr
 
 	return (
 		<div
-			className="mb-4"
+			className="w-full"
 			ref={selectRef}>
 			{label && (
 				<label
-					className="block text-sm mb-2"
+					className="block text-sm mb-1"
 					style={{ color: theme === 'light' ? '#374151' : 'inherit' }}>
 					{label}
 				</label>
