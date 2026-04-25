@@ -1,9 +1,9 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react-swc';
-import tailwindcss from 'tailwindcss';
 import autoprefixer from 'autoprefixer';
+import tailwindcss from 'tailwindcss';
+import { defineConfig } from 'vite';
 
-// https://vitejs.dev/config/
+import react from '@vitejs/plugin-react-swc';
+
 export default defineConfig({
 	plugins: [react()],
 	css: {
@@ -12,6 +12,7 @@ export default defineConfig({
 		},
 	},
 	server: {
+		// host: '0.0.0.0',
 		port: 8078,
 	},
 });
