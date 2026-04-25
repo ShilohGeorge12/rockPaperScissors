@@ -36,32 +36,6 @@ export const Settings = ({ isMobile = false }: SettingsProps) => {
 		setShowResetConfirm(false);
 	};
 
-	const getDropdownClasses = () => {
-		switch (state.theme) {
-			case 'dark':
-				return 'bg-white/20 text-white';
-			case 'light':
-				return 'bg-gray-200 text-gray-900';
-			case 'retro':
-				return 'bg-green-800/50 text-green-300';
-			default:
-				return 'bg-white/20 text-white';
-		}
-	};
-
-	const getOptionClasses = () => {
-		switch (state.theme) {
-			case 'dark':
-				return 'text-gray-900 bg-white';
-			case 'light':
-				return 'text-gray-900 bg-white';
-			case 'retro':
-				return 'text-green-900 bg-green-200';
-			default:
-				return 'text-gray-900 bg-white';
-		}
-	};
-
 	if (isMobile) {
 		return (
 			<div className="w-full [&_*]:text-inherit">
