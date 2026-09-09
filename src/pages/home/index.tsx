@@ -32,7 +32,8 @@ export const Home = () => {
 			<button
 				type="button"
 				onClick={() => dispatch({ type: 'view_rules_open', payload: { open: true } })}
-				className="absolute p-3 text-sm font-bold tracking-widest text-white border-2 border-white/50 rounded-lg bottom-6 right-6 hover:bg-white/10 transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white hidden md:block"
+				className="absolute p-3 text-sm font-bold tracking-widest rounded-lg bottom-6 right-6 transition-all duration-300 hover:scale-105 focus:outline-none hidden md:block glass"
+				style={{ color: 'var(--text-primary)', border: '1px solid var(--border-glass)' }}
 				aria-label="Open rules">
 				RULES
 			</button>

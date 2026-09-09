@@ -5,7 +5,7 @@ import { useMycontext } from '../../context';
 import { Modal } from '../../modal';
 import { Difficulty, MatchType, Theme } from '../../types';
 import { ConfirmationModal } from '../confirmationModal';
-import { CustomSelect } from '../customSelect';
+import { Select } from '../ui/select';
 
 interface SettingsProps {
 	isMobile?: boolean;
@@ -42,7 +42,7 @@ export const Settings = ({ isMobile = false }: SettingsProps) => {
 				<div className="flex flex-col gap-5">
 					<h3 className="text-xl font-bold text-center">⚙️ Settings</h3>
 
-					<CustomSelect
+					<Select
 						label="Match Type"
 						value={state.matchType}
 						onChange={(value) => handleSettingChange('matchType', value)}
@@ -53,7 +53,7 @@ export const Settings = ({ isMobile = false }: SettingsProps) => {
 						]}
 					/>
 
-					<CustomSelect
+					<Select
 						label="Difficulty"
 						value={state.difficulty}
 						onChange={(value) => handleSettingChange('difficulty', value)}
@@ -64,7 +64,7 @@ export const Settings = ({ isMobile = false }: SettingsProps) => {
 						]}
 					/>
 
-					<CustomSelect
+					<Select
 						label="Theme"
 						value={state.theme}
 						onChange={(value) => handleSettingChange('theme', value)}
@@ -81,7 +81,7 @@ export const Settings = ({ isMobile = false }: SettingsProps) => {
 							playSound('click');
 							dispatch({ type: 'toggle_sound' });
 						}}
-						className="w-full px-4 py-3 text-sm !text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition">
+						className='w-full h-11 rounded-xl font-bold text-sm transition-all' style={{background:'var(--accent-primary)',color:'#fff'}}>
 						{state.soundEnabled ? '🔊 Sound On' : '🔇 Sound Off'}
 					</button>
 
@@ -91,7 +91,7 @@ export const Settings = ({ isMobile = false }: SettingsProps) => {
 							playSound('click');
 							setShowResetConfirm(true);
 						}}
-						className="w-full px-4 py-3 text-sm !text-white bg-red-600 rounded-lg hover:bg-red-700 transition">
+						className='w-full h-11 rounded-xl font-bold text-sm transition-all' style={{background:'#ef4444',color:'#fff'}}>
 						🔄 Reset Game
 					</button>
 
@@ -135,12 +135,12 @@ export const Settings = ({ isMobile = false }: SettingsProps) => {
 				initial={{ opacity: 0, x: -100 }}
 				animate={{ opacity: 1, x: 0 }}
 				exit={{ opacity: 0, x: -100 }}
-				className="fixed left-4 top-4 bottom-4 bg-black/50 backdrop-blur-md rounded-2xl p-5 shadow-2xl z-40 min-w-[200px] hidden md:flex flex-col">
+				className='fixed left-4 top-4 bottom-4 glass rounded-2xl p-5 z-40 min-w-[200px] hidden md:flex flex-col'>
 				<div className="flex flex-col gap-3 h-full overflow-y-auto">
-					<h3 className="text-lg font-bold text-white text-center">⚙️ Settings</h3>
+					<h3 className="text-lg font-bold ">⚙️ Settings</h3>
 
 					{/* Match Type */}
-					<CustomSelect
+					<Select
 						label="Match Type"
 						value={state.matchType}
 						onChange={(value) => handleSettingChange('matchType', value)}
@@ -152,7 +152,7 @@ export const Settings = ({ isMobile = false }: SettingsProps) => {
 					/>
 
 					{/* Difficulty */}
-					<CustomSelect
+					<Select
 						label="Difficulty"
 						value={state.difficulty}
 						onChange={(value) => handleSettingChange('difficulty', value)}
@@ -164,7 +164,7 @@ export const Settings = ({ isMobile = false }: SettingsProps) => {
 					/>
 
 					{/* Theme */}
-					<CustomSelect
+					<Select
 						label="Theme"
 						value={state.theme}
 						onChange={(value) => handleSettingChange('theme', value)}
@@ -182,7 +182,7 @@ export const Settings = ({ isMobile = false }: SettingsProps) => {
 								playSound('click');
 								dispatch({ type: 'toggle_sound' });
 							}}
-							className="w-full px-3 py-2 text-sm !text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition">
+							className='w-full h-11 rounded-xl font-bold text-sm transition-all' style={{background:'var(--accent-primary)',color:'#fff'}}>
 							{state.soundEnabled ? '🔊 Sound On' : '🔇 Sound Off'}
 						</button>
 
@@ -192,14 +192,14 @@ export const Settings = ({ isMobile = false }: SettingsProps) => {
 								playSound('click');
 								setShowResetConfirm(true);
 							}}
-							className="w-full px-3 py-2 text-sm !text-white bg-red-600 rounded-lg hover:bg-red-700 transition">
+							className='w-full h-11 rounded-xl font-bold text-sm transition-all' style={{background:'#ef4444',color:'#fff'}}>
 							🔄 Reset Game
 						</button>
 					</div>
 
 					{/* Session Stats Summary */}
 					<div className="pt-3 border-t border-white/20">
-						<div className="text-xs text-white/70 text-center">
+						<div className="text-xs text-center">
 							<p>Session Stats</p>
 							<p className="mt-1">
 								🏆 {state.sessionStats.wins}W - {state.sessionStats.losses}L - {state.sessionStats.ties}T

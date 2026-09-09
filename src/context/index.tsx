@@ -1,9 +1,11 @@
 import { createContext, ReactNode, useContext, useEffect, useReducer, useRef } from 'react';
+import { toast } from 'react-toastify';
 
 import {
     contextActions, GameHistoryEntry, GameResult, ReducerType, rockPaperScissors, SessionStats,
     State
 } from '../types';
+import { statsService } from '../service/stats.service';
 
 // Helper function to determine winner
 const determineWinner = (player: rockPaperScissors, cpu: rockPaperScissors): GameResult => {
@@ -71,6 +73,8 @@ const initState: State = {
 		},
 	},
 	gameHistory: [],
+	lastPointsChange: 0,
+	lastResult: null,
 };
 
 // Reducer
@@ -130,7 +134,9 @@ const reducer: ReducerType = (state, action) => {
 				roundsPlayed: state.roundsPlayed + 1,
 				sessionStats: updatedStats,
 				powerUp: newPowerUp,
-				gameHistory: [...state.gameHistory, newHistoryEntry], // ADD THIS
+				gameHistory: [...state.gameHistory, newHistoryEntry],
+				lastPointsChange: safePoints,
+				lastResult: result,
 			};
 		}
 
@@ -211,6 +217,38 @@ export const ContextProvider = ({ children }: { children: ReactNode }) => {
 			audioRefs.current[type].play().catch((e) => console.log('Audio play failed:', e));
 		}
 	};
+
+	// Stats sync: push each round to the backend
+	const prevRounds = useRef(state.roundsPlayed);
+	const prevStreak = useRef(state.sessionStats.currentStreak);
+	const prevPowerUpActive = useRef(state.powerUp.active);
+
+	useEffect(() => {
+		if (state.roundsPlayed > prevRounds.current && state.lastResult) {
+			const lastEntry = state.gameHistory[state.gameHistory.length - 1];
+			if (lastEntry) {
+				statsService
+					.updateStats(lastEntry.result, lastEntry.playerMove, lastEntry.pointsChange)
+					.catch(() => {}); // Silent fail if backend is offline
+			}
+		}
+		prevRounds.current = state.roundsPlayed;
+
+		// Toast notifications for streak milestones
+		if (state.sessionStats.currentStreak > prevStreak.current) {
+			const streak = state.sessionStats.currentStreak;
+			if (streak === 3) toast('🔥 3 win streak!', { type: 'success', autoClose: 1500 });
+			if (streak === 5) toast('🔥🔥 5 win streak!', { type: 'success', autoClose: 1500 });
+			if (streak === 10) toast('🔥🔥🔥 UNSTOPPABLE! 10 wins!', { type: 'success', autoClose: 2000 });
+		}
+
+		// Toast for power-up activation
+		if (state.powerUp.active && !prevPowerUpActive.current) {
+			toast('⚡ Double Points activated!', { type: 'info', autoClose: 1500 });
+		}
+		prevPowerUpActive.current = state.powerUp.active;
+		prevStreak.current = state.sessionStats.currentStreak;
+	}, [state.roundsPlayed, state.lastResult, state.gameHistory, state.sessionStats.currentStreak, state.powerUp.active]);
 
 	return <MyContextState.Provider value={{ state, dispatch, playSound }}>{children}</MyContextState.Provider>;
 };

@@ -81,7 +81,9 @@ export interface State {
 	roundsPlayed: number;
 	powerUp: PowerUp;
 	sessionStats: SessionStats;
-	gameHistory: GameHistoryEntry[]; // ADD THIS
+	gameHistory: GameHistoryEntry[];
+	lastPointsChange: number;
+	lastResult: GameResult | null;
 }
 
 export interface context {
